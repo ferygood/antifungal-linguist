@@ -1,33 +1,18 @@
 import streamlit as st
+from chemTools import anti_checker, intro, reference
 
-def check_chemical_property():
-    return True
+st.set_page_config(page_title="chemical Analysis App", page_icon="#")
 
-def check_antifungal(chemical_name):
-    # Replace this with your logic to check if the chemical is related to anti-fungal properties.
-    return True  # Sample logic for demonstration
+# create tabs
+tab1, tab2, tab3 = st.tabs(["Introduction", "Anti-Checker", "References"])
 
-def check_candida_auris(chemical_name):
-    # Replace this with your logic to check if the chemical is related to Candida auris.
-    return False  # Sample logic for demonstration
+with tab1:
+    intro.intro_page()
 
-st.title("Chemical Property Checker for Candida auris")
+with tab2:
+    anti_checker.anti_checker_page()
 
-chemical_name = st.text_input("Enter the chemical name:")
+with tab3:
+    reference.reference_page()
 
-if st.button("Check"):
-    if not chemical_name:
-        st.warning("Please enter a chemical name.")
-    else:
-        antifungal_result = check_antifungal(chemical_name)
-        candida_auris_result = check_candida_auris(chemical_name)
-
-        if antifungal_result:
-            st.success(f"{chemical_name} is related to anti-fungal properties.")
-        else:
-            st.error(f"{chemical_name} is not related to anti-fungal properties.")
-
-        if candida_auris_result:
-            st.success(f"{chemical_name} is related to Candida auris.")
-        else:
-            st.error(f"{chemical_name} is not related to Candida auris.")
+    
