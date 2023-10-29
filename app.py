@@ -1,5 +1,5 @@
 import streamlit as st
-from chemTools import anti_checker, intro, reference
+from mychemtools import anti_checker, intro, reference
 
 st.set_page_config(page_title="chemical Analysis App", page_icon="#")
 
@@ -14,5 +14,3 @@ with tab2:
 
 with tab3:
     reference.reference_page()
-
-    
