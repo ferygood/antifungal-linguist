@@ -1,20 +1,18 @@
 # t5-streamlit
 
-Start the project with creating a virtual environment
+Start the project by creating a virtual environment and installing all required packages
 
 ```shell
-virtualenv t5-streamlit
+python3 -m venv myenv
 pip install -r requirements.txt
 ```
 
-**T5 (Text-To-Text Transfer Transformer)** is a family of models developed by Google AI and it is designed for various natural langugage understanding and generating tasks. It has been pre-trained on large language corpus and fine-tuned for different NLP tasks. **T5-small** variant is a light-weight version of the T5 model and it is created for handling tasks with less computational calculation and memory consumption. With less parameters, T5-sall is more easily to be deployed for usage and that is the reason we are using t5-small in this project to tacke specific domain questions.
+**T5 (Text-To-Text Transfer Transformer)** is a family of models developed by Google AI and it is designed for various natural langugage understanding and generating tasks. It has been pre-trained on large language corpus and fine-tuned for different NLP tasks. 
+
+In this project, we use [HuggingFace T5-base](https://huggingface.co/t5-base) and transformers to handle text input and generate text output.
+
+First, we use [PubChemPy](https://pubchempy.readthedocs.io/en/latest/) package to analyze the text from user input. Users can type common name, chemical name, and [SMILE structure](https://en.wikipedia.org/wiki/Simplified_molecular-input_line-entry_system), and we convert them to chemical name for our next steps.
+
+Drug data was downloaded from [DrugBank](https://go.drugbank.com/) with the Academic License. The version of the data is 5.1.10 (2023-01-04 released). We then look for the user input from DrugBank table.
 
 
-## Retrieving FDA data
-From the [Drug API Endpoints](https://open.fda.gov/apis/drug/event/), there are different categories, including adverse events, product labeling, NDC directory, recall enforcement reports, and Drugs@FDA. 
-We get Drugs@FDA data from this [link](https://download.open.fda.gov/drug/drugsfda/drug-drugsfda-0001-of-0001.json.zip) and then we can retrieve substance information.
-
-### Purple Book
-The Purple Book is a database that contains information about all FDA-licensed biological products regulated by the Center for Drug Evaluation and Research (CDER), including licensed biosimilar and interchangeable products, and their reference products. The Purple Book also contains information on all FDA-licensed allergenic, cellular and gene therapy, hematologic, and vaccine products regulated by the Center for Biologics Evaluation and Research (CBER). [More Info](https://purplebooksearch.fda.gov/)
-
-## DRUGBANK
