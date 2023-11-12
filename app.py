@@ -75,8 +75,8 @@ with tab1:
     else:
         chemical_output_dict = check_chemical_property(chemical_name)
         st.table(chemical_output_dict)
-        col3, col4 = st.columns([5,4])
-        with col4:
+        col3, col4 = st.columns([4,5])
+        with col3:
           smiles = chemical_output_dict[2]["Value"] # get smile string
 
           if smiles:
@@ -89,7 +89,7 @@ with tab1:
           else:
               st.warning("Invalid SMILES representation")
 
-        with col3:
+        with col4:
             # print model results
           antifungal = ["fluconazole", "nystatin", "amphotericin"]
           non_antifungal = ["aspirin", "ibuprofen"]
