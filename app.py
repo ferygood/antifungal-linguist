@@ -8,7 +8,12 @@ st.set_page_config(page_title="Antifungal Linguist",
                    page_icon="img/al_logo.png",
                    initial_sidebar_state="expanded")
 
-generator = pipeline(model="yaochung/antifungal-linguist", task="text2text-generation")
+@st.cache_resource()
+def load_model(path_model):
+   model = pipeline(model=path_model, task="text2text-generation")
+   return model
+
+generator = load_model("yaochung/antifungal-linguist")
 
 # create tabs
 tab1, tab2, tab3 = st.tabs(["Main", "Documentation", "TO-DO"])
@@ -92,13 +97,13 @@ with tab1:
             # 1. create prompt sentence
           if chemical_name in antifungal:
             prompt = f"Is {chemical_name} associated with antifungal medicine and Candida auris?"
-            result = generator(prompt, max_length=400)
+            result = generator(prompt, max_length=300)
             st.markdown('<p style="color:red; background-color:#FFD2D2; padding: 5px; border-radius: 5px;">Antifungal, related to Candida auris</p>', unsafe_allow_html=True)
             output_prompt = result[0]['generated_text'].capitalize()
             st.write(output_prompt)
           elif chemical_name in non_antifungal:
             prompt = f"Is {chemical_name} associated with antifungal medicine and Candida auris?"
-            result = generator(prompt, max_length=400)
+            result = generator(prompt, max_length=300)
             st.markdown('<p style="color:red; background-color:#FFD2D2; padding: 5px; border-radius: 5px;">Non Antifungal, not related to Candida auris</p>', unsafe_allow_html=True)
             output_prompt = result[0]['generated_text'].capitalize()
             st.write(output_prompt)
