@@ -3,6 +3,7 @@ import pubchempy as pcp
 from rdkit import Chem
 from rdkit.Chem import Draw
 from transformers import pipeline
+import pandas as pd
 
 st.set_page_config(page_title="Antifungal Linguist", 
                    page_icon="img/al_logo.png",
@@ -120,5 +121,7 @@ with tab2:
    st.markdown("[Model Checkpoint](https://huggingface.co/yaochung/antifungal-linguist) on Hugging Face")
 
 with tab3:
-   st.text("SMILES structure calculation and learning")
-   st.text("ADMET and DMPK prediction")
+   todo = pd.read_excel('tables/todo.xlsx', header=0)
+   business = pd.read_excel('tables/business.xlsx', header=0)
+   st.table(todo)
+   st.table(business)

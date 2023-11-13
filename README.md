@@ -1,4 +1,4 @@
-# t5-streamlit
+# Antifungal Linguist
 
 Start the project by creating a virtual environment and installing all required packages
 
@@ -13,6 +13,8 @@ In this project, we use [HuggingFace T5-base](https://huggingface.co/t5-base) an
 
 First, we use [PubChemPy](https://pubchempy.readthedocs.io/en/latest/) package to analyze the text from user input. Users can type common name, chemical name, and [SMILE structure](https://en.wikipedia.org/wiki/Simplified_molecular-input_line-entry_system), and we convert them to chemical name for our next steps.
 
-Drug data was downloaded from [DrugBank](https://go.drugbank.com/) with the Academic License. The version of the data is 5.1.10 (2023-01-04 released). We then look for the user input from DrugBank table.
+Second, we use the pre-trained T5 model and fine-tune using [distilling step-by-step](https://arxiv.org/abs/2305.02301) method from LLM prompt output, aiming to have a task specific and also flexible generative language model for drug discovery. 
+
+![antifungal lignuist](img/Readme.png "Antifungal Linguist APP")
 
 
